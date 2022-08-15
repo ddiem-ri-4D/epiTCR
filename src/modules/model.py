@@ -37,7 +37,7 @@ warnings.simplefilter(action="ignore", category=FutureWarning)
 from tqdm import tqdm
 from IPython.display import display
 
-class TCRmlModel:
+class epitcrModel:
     def __init__(self, pmodel, pX, py):
         self.model = pmodel
         self.model.fit(pX, py)
@@ -182,3 +182,7 @@ def evaluation(tunning_models, X_train, y_train, X_test, y_test):
     res.sort_values(by=['test_acc', 'test_roc_auc'], ascending=False, inplace=True)
     
     return res.reset_index(drop=True)
+
+def saveByPickle(object, path):
+    pickle.dump(object, open(path, "wb"))
+    print(f"{object} has been saved at {path}.")

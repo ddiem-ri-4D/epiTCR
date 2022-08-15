@@ -107,4 +107,23 @@ def split_dataframe_by_position(df, splits):
     return dataframes
 
 
+class epitcrModel:
+    def __init__(self, pmodel, pX, py):
+        self.model = pmodel
+        self.model.fit(pX, py)
+    
+    def predict(self, pnew_data):
+        yhat_class = self.model.predict(pnew_data)
+        return yhat_class 
 
+    
+    def info(self):
+        print(self.model)
+    
+    def rocAuc(self, X, y_true):
+        plot_roc_curve(self.model, X, y_true)
+        plt.show()
+    
+    def predict_proba(self, pnew_data):
+        yhat_class = self.model.predict_proba(pnew_data)
+        return yhat_class 
