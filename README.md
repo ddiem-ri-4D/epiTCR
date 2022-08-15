@@ -4,7 +4,7 @@ A highly sensitive TCR-peptide binding predictor for bulk sequencing data
 
 ## Requirements
 ```text
-python 3.6.8
+python >= 3.6.8
 numpy 1.22.4
 scikit-learn 1.1.2
 ```
