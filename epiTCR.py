@@ -100,7 +100,7 @@ elif chain=="m":
 
     X_res_mhc, y_res_mhc = clf_sm.fit_resample(X_train_mhc, y_train_mhc)
     pX_res_mhc = Processor.data_representation_mhc(X_res_mhc)
-    py_res_mhc = y_res.copy()
+    py_res_mhc = y_res_mhc.copy()
 
     pX_test_mhc = Processor.data_representation_mhc(X_test_mhc)
     py_test_mhc = y_test_mhc.copy()
