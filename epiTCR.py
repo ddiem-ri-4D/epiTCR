@@ -88,6 +88,7 @@ if(chain=='nm'):
 
     df_prob_test = pd.concat([test, df_test], axis=1)
     df_prob_test.to_csv('output_prediction.csv', index=False)
+    # df_prob_test.to_csv(args.outfile, index=False)
     print('Done!')
 
 
@@ -119,4 +120,5 @@ elif chain=="m":
 
     df_prob_test_mhc = pd.concat([test, df_test_mhc], axis=1)
     df_prob_test_mhc.to_csv('output_prediction.csv', index=False)
+    # df_prob_test_mhc.to_csv(args.outfile, index=False)
     print('Done!')
