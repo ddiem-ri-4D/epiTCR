@@ -1,21 +1,14 @@
-➜  ~ python3 --version
-Python 3.8.10
-
-➜  ~ pip3 list        
-Package                      Version
----------------------------- --------------------
-imbalanced-learn             0.9.1
-jupyter                      1.0.0
-jupyter-client               7.3.1
-jupyter-console              6.4.3
-jupyter-core                 4.10.0
-matplotlib                   3.5.2
-matplotlib-inline            0.1.3
-numpy                        1.22.4
-pandas                       1.4.3
-pip                          20.2.4
-plotly                       5.9.0
-scikit-learn                 1.1.2
-scipy                        1.9.0
-seaborn                      0.11.2
-tqdm                         4.64.0
+imbalearn==0.9.1
+jupyter==1.0.0
+jupyter-client==7.3.1
+jupyter-console==6.4.3
+jupyter-core==4.10.0
+matplotlib==3.5.2
+matplotlib-inline==0.1.3
+numpy==1.22.4
+pandas==1.4.3
+plotly==5.9.0
+scikit-learn==1.1.2
+scipy==1.9.0
+seaborn==0.11.2
+tqdm==4.64.0
