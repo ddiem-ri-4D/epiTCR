@@ -31,3 +31,5 @@ python3 predict.py --testfile data/split-data/without-mhc/test/test01.csv
 ## Output file example
 epiTCR without mhc outputs a table with 4 columns: CDR3b sequences, epitopes sequences, MHC full length, and predict for each pair of TCR/epitope.
 
+## References
+
