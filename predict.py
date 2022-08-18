@@ -38,27 +38,29 @@ class epitcrModel:
 #Args parse
 parser = ArgumentParser(description="Specifying Input Parameters")
 parser.add_argument("-te", "--testfile", help="Specify the full path of the file with TCR sequences")
-parser.add_argument("-mf", "--model_file", default="nm", help="Specify the model file(s) to use (nm, m). Default: nm")
+parser.add_argument("-mf", "--model_file", help="Specify the full path of the file with trained model")
+parser.add_argument("-c", "--chain", default="ce", help="Specify the chain (s) to use (ce, cem). Default: ce")
 parser.add_argument("-o", "--outfile", default=sys.stdout, help="Specify output file")
 args = parser.parse_args()
 
 model_file = args.model_file
+chain = args.chain
 
-if model_file not in ["nm","m"]:
-    print("Invalid chain. You can select nm (model without mhc), m (model with mhc)")
+if chain not in ["ce","cem"]:
+    print("Invalid chain. You can select ce (cdr3b+epitope), cem (cdr3b+epitope+mhc)")
 
 test = pd.read_csv(args.testfile)
 
 clf_sm = RandomUnderSampler(random_state=42)
 
-if(model_file=='nm'):
+if(chain=='ce'):
     X_test = test.iloc[:, :2]
     y_test = test.iloc[:, 2:]
 
     pX_test = Processor.data_representation(X_test)
     py_test = y_test.copy()
 
-    model_rf = pickle.load(open('./src/models/rdforest-model.pickle', 'rb'))
+    model_rf = pickle.load(open(model_file, 'rb'))
     print('Evaluating..')
     
     y_rf_test_proba = model_rf.predict_proba(pX_test)
@@ -67,19 +69,19 @@ if(model_file=='nm'):
     df_test = df_test.iloc[:, 1:]
 
     df_prob_test = pd.concat([test, df_test], axis=1)
-    df_prob_test.to_csv('output_prediction.csv', index=False)
+    df_prob_test.to_csv('test/output/output_prediction.csv', index=False)
     # df_prob_test.to_csv(args.outfile, index=False)
     print('Done!')
 
 
-elif model_file=="m":
+elif chain=="cem":
     X_test_mhc = test.iloc[:, :3]
     y_test_mhc = test.iloc[:, 3:]
 
     pX_test_mhc = Processor.data_representation_mhc(X_test_mhc)
     py_test_mhc = y_test_mhc.copy()
 
-    model_rf_mhc = pickle.load(open('./src/models/rdforest-model-mhc.pickle', 'rb'))
+    model_rf_mhc = pickle.load(open(model_file, 'rb'))
     print('Evaluating..')
     y_rf_test_proba_mhc = model_rf_mhc.predict_proba(pX_test_mhc)
     df_test_mhc = pd.DataFrame(data = y_rf_test_proba_mhc, columns = ["tmp", "predict_proba"])
@@ -87,6 +89,6 @@ elif model_file=="m":
     df_test_mhc = df_test_mhc.iloc[:, 1:]
 
     df_prob_test_mhc = pd.concat([test, df_test_mhc], axis=1)
-    df_prob_test_mhc.to_csv('output_prediction.csv', index=False)
+    df_prob_test_mhc.to_csv('test/output/output_prediction.csv', index=False)
     # df_prob_test_mhc.to_csv(args.outfile, index=False)
     print('Done!')

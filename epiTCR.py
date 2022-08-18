@@ -39,7 +39,7 @@ class epitcrModel:
 parser = ArgumentParser(description="Specifying Input Parameters")
 parser.add_argument("-tr", "--trainfile", help="Specify the full path of the training file with TCR sequences")
 parser.add_argument("-te", "--testfile", help="Specify the full path of the file with TCR sequences")
-parser.add_argument("-c", "--chain", default="nm", help="Specify the chain(s) to use (nm, m). Default: nm")
+parser.add_argument("-c", "--chain", default="ce", help="Specify the chain(s) to use (ce, cem). Default: ce")
 parser.add_argument("-o", "--outfile", default=sys.stdout, help="Specify output file")
 args = parser.parse_args()
 
@@ -47,8 +47,8 @@ chain = args.chain
 
 print('Loading and encoding the dataset..')
 
-if chain not in ["nm","m"]:
-    print("Invalid chain. You can select nm (without mhc), m (with mhc)")
+if chain not in ["ce","cem"]:
+    print("Invalid chain. You can select ce (cdr3b+epitope), cem (cdr3b+epitope+mhc)")
 
 train = pd.read_csv(args.trainfile)
 test = pd.read_csv(args.testfile)
@@ -60,19 +60,19 @@ lst_models = [ ('Random Forest', RandomForestClassifier(bootstrap=False, max_dep
 lst_models_mhc = [ ('Random Forest', RandomForestClassifier(bootstrap=False, max_depth=90, max_features='auto',
                          min_samples_split=10, n_estimators=600, n_jobs=-1, random_state=42))]
 
-if(chain=='nm'):
+if(chain=='ce'):
     X_train = train.iloc[:, :2]
     y_train = train.iloc[:, 2:]
 
     X_test = test.iloc[:, :2]
-    y_test = test.iloc[:, 2:]
+    # y_test = test.iloc[:, 2:]
 
     X_res, y_res = clf_sm.fit_resample(X_train, y_train)
     pX_res = Processor.data_representation(X_res)
     py_res = y_res.copy()
 
     pX_test = Processor.data_representation(X_test)
-    py_test = y_test.copy()
+    # py_test = y_test.copy()
 
     print('Training..')
 
@@ -87,24 +87,22 @@ if(chain=='nm'):
     df_test = df_test.iloc[:, 1:]
 
     df_prob_test = pd.concat([test, df_test], axis=1)
-    df_prob_test.to_csv('output_prediction.csv', index=False)
+    df_prob_test.to_csv('test/output/output_prediction.csv', index=False)
     # df_prob_test.to_csv(args.outfile, index=False)
     print('Done!')
 
 
-elif chain=="m":
+elif chain=="cem":
     X_train_mhc = train.iloc[:, :3]
     y_train_mhc = train.iloc[:, 3:]
 
     X_test_mhc = test.iloc[:, :3]
-    y_test_mhc = test.iloc[:, 3:]
 
     X_res_mhc, y_res_mhc = clf_sm.fit_resample(X_train_mhc, y_train_mhc)
     pX_res_mhc = Processor.data_representation_mhc(X_res_mhc)
     py_res_mhc = y_res_mhc.copy()
 
     pX_test_mhc = Processor.data_representation_mhc(X_test_mhc)
-    py_test_mhc = y_test_mhc.copy()
 
     print('Training..')
 
@@ -119,6 +117,6 @@ elif chain=="m":
     df_test_mhc = df_test_mhc.iloc[:, 1:]
 
     df_prob_test_mhc = pd.concat([test, df_test_mhc], axis=1)
-    df_prob_test_mhc.to_csv('output_prediction.csv', index=False)
+    df_prob_test_mhc.to_csv('test/output/output_prediction.csv', index=False)
     # df_prob_test_mhc.to_csv(args.outfile, index=False)
     print('Done!')
