@@ -13,7 +13,7 @@ scikit-learn 1.1.2
 The main module for training is `epiTCR.py`. You can train the epiTCR with mhc model running
 
 ```commandline
-python3 epiTCR.py --trainfile data/split-data/without-mhc/train/train.csv --testfile data/split-data/with-mhc/test/test01.csv --chain cem
+python3 epiTCR.py --trainfile data/split-data/with-mhc/train/train.csv --testfile data/split-data/with-mhc/test/test01.csv --chain cem
 ```
 where:
 - `--trainfile` is a csv file with TCR, epitipe and MHC (full length) columns. See example file in data/split-data/without-mhc/train/train.csv
@@ -32,7 +32,7 @@ Both training and test set should be a comma-separated CSV files. The files shou
 You can predict using the `predict.py` module.
 It is quite similar to training, you can predict the epiTCR with mhc model running:
 ```commandline
-python3 predict.py --testfile data/split-data/without-mhc/test/test01.csv --model_file src/models/rdforest-model.pickle --chain cem
+python3 predict.py --testfile data/split-data/with-mhc/test/test01.csv --model_file src/models/rdforest-model.pickle --chain cem
 ```
 where:
 - `--testfile` is a csv file with TCR, epitipe and MHC (full length) columns. See example file in data/split-data/with-mhc/test/test01.csv
@@ -40,7 +40,7 @@ where:
 - `--chain` specify the chain(s) to use (ce, cem). You can select ce (cdr3b+epitope), cem (cdr3b+epitope+mhc). Default: ce
 
 ## Output file 
-epiTCR without mhc outputs a table with 4 columns: CDR3b sequences, epitopes sequences, MHC full length, and predict for each pair of TCR/epitope. The example output file is under test/output/output_prediction.csv
+epiTCR with mhc outputs a table with 4 columns: CDR3b sequences, epitopes sequences, MHC full length, and predict for each pair of TCR/epitope. The example output file is under test/output/output_prediction.csv
 
 
 ## References
