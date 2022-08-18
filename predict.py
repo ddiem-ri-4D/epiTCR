@@ -46,8 +46,10 @@ args = parser.parse_args()
 model_file = args.model_file
 chain = args.chain
 
-if chain not in ["ce","cem"]:
-    print("Invalid chain. You can select ce (cdr3b+epitope), cem (cdr3b+epitope+mhc)")
+assert chain in ["ce","cem"]
+
+# if chain not in ["ce","cem"]:
+#     print("Invalid chain. You can select ce (cdr3b+epitope), cem (cdr3b+epitope+mhc)")
 
 test = pd.read_csv(args.testfile)
 

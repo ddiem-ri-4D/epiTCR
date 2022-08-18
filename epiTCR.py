@@ -51,8 +51,9 @@ chain = args.chain
 
 print('Loading and encoding the dataset..')
 
-if chain not in ["ce","cem"]:
-    print("Invalid chain. You can select ce (cdr3b+epitope), cem (cdr3b+epitope+mhc)")
+# if chain not in ["ce","cem"]:
+#     print("Invalid chain. You can select ce (cdr3b+epitope), cem (cdr3b+epitope+mhc)")
+assert chain in ["ce","cem"]
 
 train = pd.read_csv(args.trainfile)
 test = pd.read_csv(args.testfile)
