@@ -35,6 +35,10 @@ class epitcrModel:
         yhat_class = self.model.predict_proba(pnew_data)
         return yhat_class 
 
+def saveByPickle(object, path):
+    pickle.dump(object, open(path, "wb"))
+    print(f"{object} has been saved at {path}.")
+
 #Args parse
 parser = ArgumentParser(description="Specifying Input Parameters")
 parser.add_argument("-tr", "--trainfile", help="Specify the full path of the training file with TCR sequences")
@@ -79,6 +83,8 @@ if(chain=='ce'):
     rf_tcr = lst_models[0][1]
     model_rf = epitcrModel(rf_tcr, pX_res, np.ravel(py_res))
 
+    saveByPickle(model_rf, "models/rdforest-model.pickle")
+
     print('Evaluating..')
 
     y_rf_test_proba = model_rf.predict_proba(pX_test)
@@ -92,7 +98,7 @@ if(chain=='ce'):
     print('Done!')
 
 
-elif chain=="cem":
+else chain=="cem":
     X_train_mhc = train.iloc[:, :3]
     y_train_mhc = train.iloc[:, 3:]
 
@@ -108,6 +114,8 @@ elif chain=="cem":
 
     rf_tcr_mhc = lst_models_mhc[0][1]
     model_rf_mhc = epitcrModel(rf_tcr_mhc, pX_res_mhc, np.ravel(py_res_mhc))
+
+    saveByPickle(model_rf_mhc, "models/rdforest-model-mhc.pickle")
 
     print('Evaluating..')
 

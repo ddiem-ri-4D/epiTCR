@@ -33,7 +33,7 @@ Both training and test set should be a comma-separated CSV files. The files shou
 You can predict using the `predict.py` module.
 It is quite similar to training, you can predict the epiTCR with mhc model running:
 ```commandline
-python3 predict.py --testfile data/split-data/with-mhc/test/test01.csv --model_file src/models/rdforest-model.pickle --chain cem
+python3 predict.py --testfile data/split-data/with-mhc/test/test01.csv --model_file models/rdforest-model.pickle --chain cem
 ```
 where:
 - `--testfile` is a csv file with TCR, epitipe and MHC (full length) columns. See example file in data/split-data/with-mhc/test/test01.csv
