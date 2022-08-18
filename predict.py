@@ -74,7 +74,7 @@ if(chain=='ce'):
     print('Done!')
 
 
-elif chain=="cem":
+else chain=="cem":
     X_test_mhc = test.iloc[:, :3]
     y_test_mhc = test.iloc[:, 3:]
 
