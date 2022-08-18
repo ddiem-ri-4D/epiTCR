@@ -64,7 +64,7 @@ lst_models = [ ('Random Forest', RandomForestClassifier(bootstrap=False, max_dep
 lst_models_mhc = [ ('Random Forest', RandomForestClassifier(bootstrap=False, max_depth=90, max_features='auto',
                          min_samples_split=10, n_estimators=600, n_jobs=-1, random_state=42))]
 
-if(chain=='ce'):
+if chain=='ce':
     X_train = train.iloc[:, :2]
     y_train = train.iloc[:, 2:]
 
@@ -98,7 +98,7 @@ if(chain=='ce'):
     print('Done!')
 
 
-else chain=="cem":
+else:
     X_train_mhc = train.iloc[:, :3]
     y_train_mhc = train.iloc[:, 3:]
 

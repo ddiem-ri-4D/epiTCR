@@ -53,7 +53,7 @@ test = pd.read_csv(args.testfile)
 
 clf_sm = RandomUnderSampler(random_state=42)
 
-if(chain=='ce'):
+if chain=='ce':
     X_test = test.iloc[:, :2]
     y_test = test.iloc[:, 2:]
 
@@ -74,7 +74,7 @@ if(chain=='ce'):
     print('Done!')
 
 
-else chain=="cem":
+else:
     X_test_mhc = test.iloc[:, :3]
     y_test_mhc = test.iloc[:, 3:]
 
