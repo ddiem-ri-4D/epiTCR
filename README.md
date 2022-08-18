@@ -17,7 +17,7 @@ The main module for training is `epiTCR.py`. You can train the epiTCR with mhc m
 python3 epiTCR.py --trainfile data/split-data/with-mhc/train/train.csv --testfile data/split-data/with-mhc/test/test01.csv --chain cem
 ```
 where:
-- `--trainfile` is a csv file with TCR, epitipe and MHC (full length) columns. See example file in data/split-data/without-mhc/train/train.csv as an example.
+- `--trainfile` is a csv file with TCR, epitipe and MHC (full length) columns. See example file in data/split-data/with-mhc/train/train.csv as an example.
 - `--testfile` is a csv file with TCR, epitipe and MHC (full length) columns. See example file in data/split-data/with-mhc/test/test01.csv as an example.
 - `--chain` specify the chain(s) to use (ce, cem). You can select ce (cdr3b+epitope), cem (cdr3b+epitope+mhc). Default: ce
 
