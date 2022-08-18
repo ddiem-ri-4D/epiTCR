@@ -11,7 +11,7 @@ scikit-learn 1.1.2
 Other requirements, see env_requirements.txt file.
 
 ## Model Training
-The main module for training is `epiTCR.py`. You can train the epiTCR with mhc model running
+The main module for training is `epiTCR.py`. You can train the epiTCR with mhc model running:
 
 ```commandline
 python3 epiTCR.py --trainfile data/split-data/with-mhc/train/train.csv --testfile data/split-data/with-mhc/test/test01.csv --chain cem
