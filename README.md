@@ -4,7 +4,7 @@ A highly sensitive predictor for TCR-peptide binding
 
 ## Requirements
 ```text
-python >= 3.x
+python >= 3.0.0
 numpy 1.22.4
 scikit-learn 1.1.2
 ```
