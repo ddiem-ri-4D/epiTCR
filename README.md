@@ -1,5 +1,5 @@
 # epiTCR
-A highly sensitive predictor for TCR-peptide binding 
+epiTCR is a highly sensitive predictor for TCR-peptide binding. epiTCR uses TCR CDR3b sequences and peptide sequences as input. Additionally, users can also provide full length MHC to the tool. The output produces the predicted binding probability. 
 
 
 ## Requirements
@@ -8,41 +8,42 @@ python >= 3.0.0
 numpy 1.22.4
 scikit-learn 1.1.2
 ```
-Other requirements, see env_requirements.txt file.
+For other requirements, please see the env_requirements.txt file.
 
-## Model Training
-The main module for training is `epiTCR.py`. You can train the epiTCR with mhc model running:
+## Model training
+The main module for training is `epiTCR.py`. Users can train the epiTCR model (with or without MHC) by running:
 
 ```commandline
 python3 epiTCR.py --trainfile data/split-data/with-mhc/train/train.csv --testfile data/split-data/with-mhc/test/test01.csv --chain cem
 ```
-where:
-- `--trainfile` is a csv file with TCR, epitipe and MHC (full length) columns. See example file in data/split-data/with-mhc/train/train.csv as an example.
-- `--testfile` is a csv file with TCR, epitipe and MHC (full length) columns. See example file in data/split-data/with-mhc/test/test01.csv as an example.
-- `--chain` specify the chain(s) to use (ce, cem). You can select ce (cdr3b+epitope), cem (cdr3b+epitope+mhc). Default: ce
 
-- All other cmd parameters are similar to the training process. 
+given that:
+- `--trainfile` is a comma-separated file (CSV) containing columns for TCR, epitipe, binder, and/or full length MHC (reported by IMGT). See [example training data](data/split-data/with-mhc/train/train.csv).
+- `--testfile` is a CSV file containing columns for TCR, epitipe and/or full length MHC (reported by IMGT). See [example test file](data/split-data/with-mhc/test/test01.csv).
+- `--chain` specifies the chain(s) to use (ce, cem). Available options for this parameter are `ce` (cdr3b+epitope) and `cem` (cdr3b+epitope+mhc). Default as `ce`.
 
-This will print the predictions on the standard output or on a file (that can be specified with the option --outfile).
+## Binding prediction
 
-Both training and test set should be a comma-separated CSV files. The files should have the following columns (with headers): CDR3b, epitope, MHC (full-length), binder (the binder coulmn is not required in the test file). 
+The module for prediction is `predict.py`. Similar to the training command, users predict TCR-epitope or TCR-pMHC by running:
 
-
-## Binding Prediction
-
-You can predict using the `predict.py` module.
-It is quite similar to training, you can predict the epiTCR with mhc model running:
 ```commandline
 python3 predict.py --testfile data/split-data/with-mhc/test/test01.csv --model_file models/rdforest-model.pickle --chain cem
 ```
-where:
-- `--testfile` is a csv file with TCR, epitipe and MHC (full length) columns. See example file in data/split-data/with-mhc/test/test01.csv
-- `--model_file` specify the full path of the file with trained model, should be a pickle files.
-- `--chain` specify the chain(s) to use (ce, cem). You can select ce (cdr3b+epitope), cem (cdr3b+epitope+mhc). Default: ce
 
-## Output file 
-epiTCR with mhc outputs a table with 4 columns: CDR3b sequences, epitopes sequences, MHC full length, and predict for each pair of TCR/epitope. The example output file is under test/output/output_prediction.csv
+given that:
+- `--testfile` is a CSV file containing columns for TCR, epitipe and/or full length MHC reported by IMGT. See [example input file](data/split-data/with-mhc/test/test01.csv).
+- `--model_file` specifies the full path of the file with trained model, should be a pickle files. Default model as `models/rdforest-model.pickle`.
+- `--chain` specifies the chain(s) to use (ce, cem). Options for this parameter are `ce` (cdr3b+epitope) and `cem` (cdr3b+epitope+mhc). Default as `ce`.
 
+## Prediction output  
+
+The prediction will be printed out on the standard output or on a file (which can be specified with the option `--outfile`).
+
+epiTCR prediction output contains a table with four columns: the CDR3b sequences, epitope sequences, (full length MHC,) and the binding probability for the corresponding complexes. The example output file is [here](test/output/output_prediction.csv).
+
+## Contact
+
+For more questions or feedback, please simply post an [Issue](https://github.com/ddiem-ri-4D/epiTCR/issues/new). 
 
 ## References
 
