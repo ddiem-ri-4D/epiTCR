@@ -45,7 +45,7 @@
     │   │   ├── with-mhc                                <- Split raw data into 9 test sets with MHC.
     │   │   │                                           
     │   │   └── without-mhc                             <- Split raw data into 15 test sets without MHC.
-    │   ├── supplementary-data                           <- Supplementary data for convert HLA Alele into protein sequence (365 aa).
+    │   ├── supplementary-data                          <- Supplementary data for convert HLA Alele into protein sequence (365 aa).
     │   └── test                                            
     │       └── output                                  <- Prediction output file contains a table with four columns: the CDR3b sequences, epitope sequences, (full length MHC,) and the binding probability for the corresponding complexes
     │
