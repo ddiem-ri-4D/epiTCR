@@ -1,37 +1,40 @@
 ## Project Organization
 
-    ├── README.md                                       <- The top-level README for developers using this project.
+    ├── README.md                                       <- The top-level README for users on epiTCR
     ├── data
     │   ├── convert-data                    
     │   │   │
-    │   │   ├── 7-peptides                              <- Representation data from input data of 7 highly FP peptides into onehot encoding.
+    │   │   ├── 7-peptides                              <- One hot encoded input for 7 highly FP peptides into onehot encoding
     │   │   │
-    │   │   ├── with-mhc                                <- Representation data from input data with mhc into onehot encoding.
+    │   │   ├── with-mhc                                <- One hot encoded input with MHC
     │   │   │
-    │   │   └── without-mhc                             <- Representationd data from input data without mhc into onehot encoding.
+    │   │   └── without-mhc                             <- One hot encoded input without MHC
+    │   │      
     │   ├── final-data                      
     │   │   │
-    │   │   ├── final-with-HLA-without-full-length.csv  <- Final data with HLA without full length.   
+    │   │   ├── final-with-HLA-without-full-length.csv  <- Preprocessed data with HLA without full length (for pMTnet)   
     │   │   │
-    │   │   └── final-with-HLA.csv                      <- Final data with HLA with full length.
+    │   │   └── final-with-HLA.csv                      <- Preprocessed data with HLA in full length (for epiTCR-MHC)
+    |   |
     │   ├── pred-tools-data                             
     │   │   │
-    │   │   ├── atm-tcr                                 <- Predict data of ATM-TCR tool with pre-trained and re-train on 15 testsets.
+    │   │   ├── atm-tcr                                 <- ATM-TCR prediction with trained and re-train models on 15 testsets
     │   │   │
-    │   │   ├── imrex                                   <- Predict data of Imrex tool with pretrained on 15 testsets.
+    │   │   ├── imrex                                   <- Imrex prediction with trained model on 15 testsets
     │   │   │                                           
-    │   │   ├── nettcr                                  <- Predict data of NetTCR tool with pretrained and re-train on 15 testsets.
+    │   │   ├── nettcr                                  <- NetTCR prediction with trained and re-trained models on 15 testsets
     │   │   │                                           
-    │   │   └── pmtnet                                  <- Predict data of pMTnet tool with pretrained on 9 testsets.
-    │   ├── predict-data                              
+    │   │   └── pmtnet                                  <- pMTnet prediction with trained model on 9 testsets
+    │   │
+    │   ├── predict-data                                <- Prediction of epiTCR
     │   │   │                                           
-    │   │   ├── 7-peptides                              <- Predict probability data of 7 highly FP peptides without MHC.
+    │   │   ├── 7-peptides                              <- Prediction on observations related to seven dominant peptides without MHC
     │   │   │                                           
-    │   │   ├── full-testset                            <- Predict probability data for full testset with MHC and without MHC.
+    │   │   ├── full-testset                            <- Prediction on all test sets (with MHC and without MHC)
     │   │   │                                           
-    │   │   ├── with-mhc                                <- Predict probability data of 9 testsets with MHC.
+    │   │   ├── with-mhc                                <- Prediction on 9 testsets with MHC
     │   │   │                                           
-    │   │   └── without-mhc                             <- Predict probability data of 15 testsets without MHC.
+    │   │   └── without-mhc                             <- Prediction on 15 testsets without MHC
     │   ├── random-sample-data                          <- Generate random sample data to compare running times tools.
     │   ├── similarity-score                            
     │   │   │                                           
