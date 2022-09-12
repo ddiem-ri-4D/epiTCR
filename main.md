@@ -4,11 +4,11 @@
     ├── data
     │   ├── convert-data                    
     │   │   │
-    │   │   ├── 7-peptides                              <- Representation of input data of 7 highly FP peptides into onehot encoding.
+    │   │   ├── 7-peptides                              <- Representation data from input data of 7 highly FP peptides into onehot encoding.
     │   │   │
-    │   │   ├── with-mhc                                <- Representation of input data with mhc into onehot encoding.
+    │   │   ├── with-mhc                                <- Representation data from input data with mhc into onehot encoding.
     │   │   │
-    │   │   └── without-mhc                             <- Representation of input data without mhc into onehot encoding.
+    │   │   └── without-mhc                             <- Representationd data from input data without mhc into onehot encoding.
     │   ├── final-data                      
     │   │   │
     │   │   ├── final-with-HLA-without-full-length.csv  <- Final data with HLA without full length.   
@@ -18,11 +18,11 @@
     │   │   │
     │   │   ├── atm-tcr                                 <- Predict data of ATM-TCR tool with pre-trained and re-train on 15 testsets.
     │   │   │
-    │   │   ├── imrex                                   <- Predict data of Imrex tool with pretrained on 15 test sets.
+    │   │   ├── imrex                                   <- Predict data of Imrex tool with pretrained on 15 testsets.
     │   │   │                                           
     │   │   ├── nettcr                                  <- Predict data of NetTCR tool with pretrained and re-train on 15 testsets.
     │   │   │                                           
-    │   │   └── pmtnet                                  <- Predict data of pMTnet tool with pretrained on 9 test sets.
+    │   │   └── pmtnet                                  <- Predict data of pMTnet tool with pretrained on 9 testsets.
     │   ├── predict-data                              
     │   │   │                                           
     │   │   ├── 7-peptides                              <- Predict probability data of 7 highly FP peptides without MHC.
