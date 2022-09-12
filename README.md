@@ -42,7 +42,7 @@ given that:
 
 ## Prediction output  
 
-epiTCR prediction output contains a table with four columns: the CDR3b sequences, epitope sequences, (full length MHC,) and the binding probability for the corresponding complexes. The example output file is [here](test/output/output_prediction.csv).
+epiTCR prediction output contains a table with four columns: the CDR3b sequences, epitope sequences, (full length MHC,) and the binding probability for the corresponding complexes. The example output file is [here](data/test/output/output_prediction.csv).
 
 ## Contact
 
