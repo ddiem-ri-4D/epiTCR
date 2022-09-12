@@ -45,7 +45,9 @@
     │   │   ├── with-mhc                                <- Split raw data into 9 test sets with MHC.
     │   │   │                                           
     │   │   └── without-mhc                             <- Split raw data into 15 test sets without MHC.
-    │   └──supplementary-data                           <- Supplementary data for convert HLA Alele into protein sequence (365 aa).
+    │   ├── supplementary-data                           <- Supplementary data for convert HLA Alele into protein sequence (365 aa).
+    │   └── test                                            
+    │       └── output                                  <- Prediction output file contains a table with four columns: the CDR3b sequences, epitope sequences, (full length MHC,) and the binding probability for the corresponding complexes
     │
     ├── models                                          <- Contains pre-trained model files.
     ├── secondary-analysis                              <- 
@@ -83,8 +85,6 @@
     │   │   │                                           
     │   │   └── split-data.ipynb                        <- Python scripts to split raw data into 15 test sets without MHC.
     │   └── hla2fulllength.ipynb                        <- Python scripts convert HLA Alele into protein sequence (365 aa).
-    ├── test                                            
-    │   └── output                                      <- Prediction output file contains a table with four columns: the CDR3b sequences, epitope sequences, (full length MHC,) and the binding probability for the corresponding complexes
     ├── env_requirements.txt                            <- The requirements file for reproducing the analysis environment, e.g.
     │                                                      generated with `pip freeze > env_requirements.txt`.
     │                                                      Usage: `pip install -r env_requirements.txt`.
