@@ -1,10 +1,12 @@
 ## Project Organization
 
+This document explains details about epiTCR project organization, ie. description about all folders and files of the project. This is for further exploration on epiTCR.
+
     ├── README.md                                       <- Instruction for instant use of epiTCR
     ├── data
     │   ├── convert-data                                <- One hot encoded data
     │   │   │
-    │   │   ├── 7-peptides                              <- One hot encoded data for 7 highly FP peptides into onehot encoding
+    │   │   ├── 7-peptides                              <- One hot encoded data for seven dominant peptides
     │   │   │
     │   │   ├── with-mhc                                <- One hot encoded data with MHC
     │   │   │
