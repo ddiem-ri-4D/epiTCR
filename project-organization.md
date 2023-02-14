@@ -4,57 +4,70 @@ This document explains details about epiTCR project organization, ie. descriptio
 
     ├── README.md                                       <- Instruction for instant use of epiTCR
     ├── data
-    │   ├── convert-data                                <- One hot encoded data
+    │   ├── finalData                                   <- Preprocessed data
     │   │   │
-    │   │   ├── 7-peptides                              <- One hot encoded data for seven dominant peptides
+    │   │   ├── finalWithHLAConverted.csv               <- Preprocessed data with HLA  & Converted to pseudo sequence
     │   │   │
-    │   │   ├── with-mhc                                <- One hot encoded data with MHC
-    │   │   │
-    │   │   └── without-mhc                             <- One hot encoded  without MHC
-    │   │      
-    │   ├── final-data                                  <- Preprocessed data
-    │   │   │
-    │   │   ├── final-without-HLA.csv                   <- Preprocessed data without HLA   
-    │   │   │
-    │   │   └── final-with-HLA.csv                      <- Preprocessed data with HLA in full length
+    │   │   └── finalWithoutHLA.csv                     <- Preprocessed data without HLA 
     |   |
-    │   ├── pred-tools-data                             
+    │   ├── hlaConvertPeudoSeq                                                                     
+    │   │   └── HLAWithPseudoSeq.csv                    <- Converted to pseudo sequence with HLA 
+    |   |
+    │   ├── nonOverlapingPeptide                             
     │   │   │
-    │   │   ├── atm-tcr                                 <- ATM-TCR prediction with trained and re-train models on 15 testsets
+    │   │   ├── withMHC                                 <- Preprocessed unseen data with MLC
+    │   │   │                                           
+    │   │   └── withoutMHC                              <-Preprocessed unseen data with MLC
+    │   │
+    │   ├── outputPerformance                            
     │   │   │
-    │   │   ├── imrex                                   <- Imrex prediction with trained model on 15 testsets
+    │   │   ├── ATMTCR                                  <- ATM-TCR performance metrics with trained and re-train models on 15 testsets
+    │   │   │
+    │   │   ├── Imrex                                   <- Imrex performance metrics with trained model on 15 testsets
     │   │   │                                           
-    │   │   ├── nettcr                                  <- NetTCR prediction with trained and re-trained models on 15 testsets
-    │   │   │                                           
-    │   │   └── pmtnet                                  <- pMTnet prediction with trained model on 9 testsets 
+    │   │   ├── NetTCR                                  <- NetTCR predperformance metricsiction with trained and re-trained models on 15 testsets                                          
+    │   │   └── pMTnet                                  <- pMTnet performance metrics with trained model on 9 testsets 
     │   │
-    │   ├── predict-data                                <- Prediction of epiTCR
-    │   │   │                                           
-    │   │   ├── 7-peptides                              <- Prediction on observations related to seven dominant peptides without MHC
-    │   │   │                                           
-    │   │   ├── full-testset                            <- Prediction on all test sets (with MHC and without MHC)
-    │   │   │                                           
-    │   │   ├── with-mhc                                <- Prediction on 9 testsets with MHC
-    │   │   │                                           
-    │   │   └── without-mhc                             <- Prediction on 15 testsets without MHC
+    │   ├── pred7DominantPeptide                        <- 7 Dominant peptide prediction on full data   
     │   │
-    │   ├── random-sample-data                          <- Randomly generated data for runtime benchmark
+    │   ├── predepiTCRData                             
+    │   │   │
+    │   │   ├── fullTestset                             <- epiTCR prediction with full testset
+    │   │   │
+    │   │   ├── withMHC                                 <- epiTCR prediction with trained model on 9 testsets
+    │   │   │                                                                                     
+    │   │   └── withoutMHC                              <- epiTCR prediction with trained model on 15 testsets 
     │   │
-    │   ├── similarity-score                            <- Data for sequence similarity analysis
+    │   ├── predToolsData                             
+    │   │   │
+    │   │   ├── ATMTCR                                  <- ATM-TCR prediction with trained and re-train models on 15 testsets
+    │   │   │
+    │   │   ├── Imrex                                   <- Imrex prediction with trained model on 15 testsets
     │   │   │                                           
-    │   │   ├── cdr3b                                   <- Similarity on CDR3b sequences
+    │   │   ├── NetTCR                                  <- NetTCR prediction with trained and re-trained models on 15 testsets
     │   │   │                                           
-    │   │   └── epitope                                 <- Similarity on epitope
+    │   │   └── pMTnet                                  <- pMTnet prediction with trained model on 9 testsets 
     │   │
-    │   ├── split-data                                  <- Observations splitted for different analysis
+    │   ├── randomSampleData                            
+    │   │   │
+    │   │   ├── epiTCR                                  <- epiTCR get randomly generated data for runtime benchmark
+    │   │   │
+    │   │   ├── Imrex                                   <- Imrex get randomly generated data for runtime benchmark
     │   │   │                                           
-    │   │   ├── 7-peptides                              <- Observations for seven dominant peptides
+    │   │   ├── NetTCR                                  <- NetTCR get randomly generated data for runtime benchmark
     │   │   │                                           
-    │   │   ├── with-mhc                                <- Observations splitted into nine test sets with MHC
-    │   │   │                                           
-    │   │   └── without-mhc                             <- Observations splitted into 15 test sets without MHC
+    │   │   └── pMTnet                                  <- pMTnet get randomly generated data for runtime benchmark
     │   │
-    │   ├── supplementary-data                          <- Supplementary data for conversion of HLA typing to full length sequence following IMGT data
+    │   ├── runTimeData                                 <- prepare data for runtime benchmark
+    │   │  
+    │   ├── similarityScore                                                                                                   
+    │   │   └── matrixLevenSimiEpi.csv                  <- Matrix similarity of epitope sequences using measure LV
+    │   │
+    │   ├── splitData                                   <- Observations splitted for different analysis
+    │   │   │                                                                                     
+    │   │   ├── withMHC                                 <- Observations splitted into nine test sets with MHC
+    │   │   │                                           
+    │   │   └── withoutMHC                              <- Observations splitted into 15 test sets without MHC
     │   │
     │   └── test                                            
     │       └── output                                  <- Prediction output 
@@ -66,13 +79,23 @@ This document explains details about epiTCR project organization, ie. descriptio
     ├── src                                             
     │   ├── benchmark                                   
     │   │   │                                           
-    │   │   ├── compare-roc-auc-tools.ipynb             <- Python scripts for epiTCR benchmark
+    │   │   ├── compareROCAUCTools.py                   <- Python scripts for epiTCR benchmark
     │   │   │                                           
-    │   │   ├── compare-with-mhc.ipynb                  <- Python scripts for epiTCR-MHC benchmark
+    │   │   ├── compareWithMHC.py                       <- Python scripts for epiTCR-MHC benchmark
     │   │   │                                           
-    │   │   └── runtime.ipynb                           <- Python scripts for runtime benchmark
+    │   │   └── runTime.py                              <- Python scripts for runtime benchmark
     │   │
-    │   ├── model-for-7-highly-fp-peptides              <- Python scripts for training individual models for seven dominant peptides
+    │   ├── calSimilarityByLV                           <- Calculate similarity of epitope sequences using measure LV
+    │   │
+    │   ├── hlaConvertPseudoSeq                         <- Convert hla to pseudo sequence
+    │   │
+    │   ├── model7DominantPeptide                       <- Python scripts for training individual models for seven dominant peptides
+    │   │
+    │   ├── modelWithUnseenData                         
+    │   │   │
+    │   │   ├── epiTCR2.py                              <- Main module of epiTCR on unseen data
+    │   │   │                                                                             
+    │   │   └── peptide2.py                             <- LModule for epiTCR pre-trained model on unseen data
     │   │
     │   ├── modules                                     <- Libraries for model training, evaluation and prediction
     │   │   │
@@ -84,27 +107,19 @@ This document explains details about epiTCR project organization, ie. descriptio
     │   │   │                                                                             
     │   │   └── utils.py                                <- Library for sequence processing
     │   │
-    │   ├── predict_fulltest                            
+    │   ├── predFulltest                            
     │   │   │                                           
-    │   │   ├── with-mhc.ipynb                          <- Scripts for full prediction on observations with MHC
+    │   │   ├── withMHC.py                              <- Scripts for full prediction on observations with MHC
     │   │   │                                           
-    │   │   └── without-mhc.ipynb                       <- Scripts for full prediction on observations without MHC 
+    │   │   └── withoutMHC.py                           <- Scripts for full prediction on observations without MHC 
     │   │
-    │   ├── roc-auc-tools                               <- Scripts for performance evaluation
+    │   ├── rocAUCTools                                 <- Scripts for performance evaluation
     │   │
-    │   ├── similarity-sequences                        <- Scripts for data processing based on sequence similarity
-    │   │   │                                           
-    │   │   ├── similarity-cdr3b.ipynb                  <- Scripts for data processing based on CDR3 similarity
-    │   │   │                                           
-    │   │   └── similarity-epitope.ipynb                <- Scripts for data processing based on epitope similarity
-    │   │
-    │   ├── split-data                                 
-    │   │   │                                           
-    │   │   ├── split-data-mhc.ipynb                    <- Scripts for data generation into nine test sets with MHC
-    │   │   │                                           
-    │   │   └── split-data.ipynb                        <- Scripts for data generation into 15 test sets without MHC
-    │   │
-    │   └── hla2fulllength.ipynb                        <- Scripts for conversion from HLA typing to full length sequence following IGMT 
+    │   └── splitData                                
+    │       │                                           
+    │       ├── splitDataWithMHC.py                     <- Scripts for data generation into nine test sets with MHC
+    │       │                                           
+    │       └── splitDataWithoutMHC.py                  <- Scripts for data generation into 15 test sets without MHC
     │
     ├── env_requirements.txt                            <- Requirements file for reproducing the analysis environment
     │
