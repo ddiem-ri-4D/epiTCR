@@ -21,15 +21,16 @@ calculate_metrics <- function(prob, label, p_thres) {
   return(res)
 }
 
-training <- fread('/Users/vy/Desktop/GS/TCR-epitope-prediction/train.csv', data.table = F)
+training <- fread('/Users/vy/epiTCR/data/pred7DominantPeptide/alternative-trainings/train.csv', data.table = F)
 training$type <- 'training'
 
-all.wohla <- fread('/Users/vy/Desktop/GS/TCR-datasets/filtered/final-without-HLA.csv', data.table = F)
+all.wohla <- fread('/Users/vy/epiTCR/data/finalData/finalwithoutHLA.csv', data.table = F)
 all.wohla$type <- 'original'
 
-all_pred <- fread('/Users/vy/Downloads/prediction_out_full_testdata_nonmhc.csv', data.table = F)
+all_pred <- fread('/Users/vy/epiTCR/data/predepiTCRData/fullTestset/predictWithoutMHC.csv', data.table = F)
 dim(unique(all_pred))
 dim(all_pred)
+
 all_pred.merged <- merge(all_pred, training, by = c('CDR3b', 'epitope', 'binder'), all.x = T, all.y = T)
 dim(unique(all_pred.merged))
 
@@ -43,19 +44,19 @@ dim(all_pred.merged)
 dim(training)
 
 all_pred.merged <- all_pred.merged[, c(1:5)]
-neo <- fread('/Users/vy/Downloads/Table S5.csv', data.table = F)
+neo <- readxl::read_excel('/Users/vy/epiTCR/data/neoantigen/Neoantigen confirmation.xlsx', sheet = 'Sheet1')
 neo <- neo[neo$cancer != 'NA',]
 neo <- neo[, c(1:7)]
 neo.pred <- merge(neo, all_pred.merged, by = c('epitope'), all.x = F, all.y = F)
 dim(neo.pred)
 
 neo.pred.roc <- unique(neo.pred[, c(1, 8:11)])
-write.table(neo.pred.roc, 'neo-pred.csv', quote = F, row.names = F, sep = ',')
-calculate_metrics(neo.pred.roc$predict_proba, neo.pred.roc$binder, 0.5)
 
 library(pROC)
 roc.obj <- roc(binder ~ predict_proba, data = neo.pred.roc)
-ggroc(roc.obj, legacy.axes = TRUE, color = 'red') + xlab("1- Specificity") + ylab("Sensitivity") +
+ggroc(roc.obj, legacy.axes = TRUE, color = 'darkblue') +
+  geom_segment(aes(x = 0, xend = 1, y = 0, yend = 1), linetype="dashed", color = 'red') +
+  labs(x = "1- Specificity", y = "Sensitivity") +
   cowplot::theme_cowplot()
 
 perf <- c(unlist(calculate_metrics(neo.pred.roc$predict_proba, neo.pred.roc$binder, 0.5)), 'overall')
@@ -82,3 +83,4 @@ ggplot(perf.melt, aes(x = V5, y = value, fill = V5)) +
                                    axis.ticks.x=element_blank()) + xlab('Groups') + ylab('Metrics') +
   guides(fill=guide_legend(title="Groups")) +
   geom_text(aes(label = round(value, 3)), stat = "identity", vjust = 0.5, hjust = 1, size = 4, colour = "white", angle = 90)
+
