@@ -10,6 +10,8 @@ This document explains details about epiTCR project organization, ie. descriptio
     │   │   │
     │   │   └── finalWithoutHLA.csv                     <- Preprocessed data without HLA 
     |   |
+    │   ├── get10Subsampling                            <- set 10 time samplings on epiTCR, ATMTCR and NetTCR data
+    │   │
     │   ├── hlaConvertPeudoSeq                                                                     
     │   │   └── HLAWithPseudoSeq.csv                    <- Converted to pseudo sequence with HLA 
     |   |
@@ -17,16 +19,7 @@ This document explains details about epiTCR project organization, ie. descriptio
     │   │   │
     │   │   ├── withMHC                                 <- Preprocessed unseen data with MLC
     │   │   │                                           
-    │   │   └── withoutMHC                              <-Preprocessed unseen data with MLC
-    │   │
-    │   ├── outputPerformance                            
-    │   │   │
-    │   │   ├── ATMTCR                                  <- ATM-TCR performance metrics with trained and re-train models on 15 testsets
-    │   │   │
-    │   │   ├── Imrex                                   <- Imrex performance metrics with trained model on 15 testsets
-    │   │   │                                           
-    │   │   ├── NetTCR                                  <- NetTCR predperformance metricsiction with trained and re-trained models on 15 testsets                                          
-    │   │   └── pMTnet                                  <- pMTnet performance metrics with trained model on 9 testsets 
+    │   │   └── withoutMHC                              <- Preprocessed unseen data with MLC
     │   │
     │   ├── pred7DominantPeptide                        <- 7 Dominant peptide prediction on full data   
     │   │
@@ -46,7 +39,17 @@ This document explains details about epiTCR project organization, ie. descriptio
     │   │   │                                           
     │   │   ├── NetTCR                                  <- NetTCR prediction with trained and re-trained models on 15 testsets
     │   │   │                                           
-    │   │   └── pMTnet                                  <- pMTnet prediction with trained model on 9 testsets 
+    │   │   ├── pMTnet                                  <- pMTnet prediction with trained model on 9 testsets 
+    |   │   │  
+    |   |   └── outputPerformance                            
+    |   │      │
+    |   │      ├── ATMTCR                               <- ATM-TCR performance metrics with trained and re-train models on 15 testsets
+    |   │      │
+    |   │      ├── Imrex                                <- Imrex performance metrics with trained model on 15 testsets
+    |   │      │                                        
+    |   │      ├── NetTCR                               <- NetTCR predperformance metricsiction with trained and re-trained models on 15 testsets   
+    │   │      │                              
+    |   │      └── pMTnet                               <- pMTnet performance metrics with trained model on 9 testsets 
     │   │
     │   ├── randomSampleData                            
     │   │   │
@@ -60,6 +63,8 @@ This document explains details about epiTCR project organization, ie. descriptio
     │   │
     │   ├── runTimeData                                 <- prepare data for runtime benchmark
     │   │  
+    │   ├── setDataPredict10Subs                        <- prepare data for 10-time subsampling benchmark
+    │   │
     │   ├── similarityScore                                                                                                   
     │   │   └── matrixLevenSimiEpi.csv                  <- Matrix similarity of epitope sequences using measure LV
     │   │
@@ -76,7 +81,9 @@ This document explains details about epiTCR project organization, ie. descriptio
     │
     ├── secondary-analysis                              <- Secondary analyses for the manuscript, incl. similarity, dominant peptides, and neoantigens
     │
-    ├── src                                             
+    ├── src      
+    │   ├── get10Subsampling                            <- python scripts for get 10 time-subsampling; benchmark with epiTCR, ATMTCR and NetTCR data
+    │   │                                     
     │   ├── benchmark                                   
     │   │   │                                           
     │   │   ├── compareROCAUCTools.py                   <- Python scripts for epiTCR benchmark
