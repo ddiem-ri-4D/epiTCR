@@ -1,6 +1,6 @@
 import sklearn.metrics as metrics
 
-from sklearn.metrics import classification_report, confusion_matrix, plot_roc_curve
+from sklearn.metrics import classification_report, confusion_matrix
 from sklearn.metrics import accuracy_score, roc_auc_score, confusion_matrix
 from sklearn.model_selection import cross_validate, GridSearchCV
 from sklearn.metrics import classification_report, confusion_matrix
