@@ -40,7 +40,7 @@ python3 predict.py --testfile data/splitData/withMHC/test/test01.csv --modelfile
 ```
 given that:
 - `--testfile` is a CSV file containing columns for TCR, epitipe and/or full length MHC reported by IMGT. See [example input file](data/splitData/withMHC/test/test01.csv).
-- `--model_file` specifies the full path of the file with trained model, should be a pickle files. Default model as `models/rdforestWithMHCModel.pickle`.
+- `--modelfile` specifies the full path of the file with trained model, should be a pickle files. Default model as `models/rdforestWithMHCModel.pickle`.
 - `--chain` specifies the chain(s) to use (ce, cem). Options for this parameter are `ce` (cdr3b+epitope) and `cem` (cdr3b+epitope+mhc). Default as `ce`.
 
 ## Prediction output  
