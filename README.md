@@ -36,7 +36,7 @@ The prediction output is printed out on the standard output (std) or on a file (
 Users can also apply our pre-trained model to directly make prediction on their data using the module `predict.py`. TCR-epitope or TCR-pMHC binding prediction can be run with:
 
 ```commandline
-python3 predict.py --testfile data/splitData/withMHC/test/test01.csv --model_file models/rdforestWithMHCModel.pickle --chain cem
+python3 predict.py --testfile data/splitData/withMHC/test/test01.csv --modelfile models/rdforestWithMHCModel.pickle --chain cem
 ```
 given that:
 - `--testfile` is a CSV file containing columns for TCR, epitipe and/or full length MHC reported by IMGT. See [example input file](data/splitData/withMHC/test/test01.csv).
