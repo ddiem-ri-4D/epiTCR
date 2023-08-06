@@ -51,4 +51,22 @@ epiTCR prediction output contains a table with four columns: the CDR3b sequences
 
 For more questions or feedback, please simply post an [Issue](https://github.com/ddiem-ri-4D/epiTCR/issues/new). 
 
+## Citation
+Please cite this paper if it helps your research:
+
+@article{10.1093/bioinformatics/btad284,
+    author = {Pham, My-Diem Nguyen and Nguyen, Thanh-Nhan and Tran, Le Son and Nguyen, Que-Tran Bui and Nguyen, Thien-Phuc Hoang and Pham, Thi Mong Quynh and Nguyen, Hoai-Nghia and Giang, Hoa and Phan, Minh-Duy and Nguyen, Vy},
+    title = "{epiTCR: a highly sensitive predictor for TCR–peptide binding}",
+    journal = {Bioinformatics},
+    volume = {39},
+    number = {5},
+    pages = {btad284},
+    year = {2023},
+    month = {04},
+    issn = {1367-4811},
+    doi = {10.1093/bioinformatics/btad284},
+    url = {https://doi.org/10.1093/bioinformatics/btad284},
+    eprint = {https://academic.oup.com/bioinformatics/article-pdf/39/5/btad284/50204900/btad284.pdf},
+}
+
 ## References
