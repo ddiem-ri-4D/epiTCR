@@ -53,7 +53,7 @@ For more questions or feedback, please simply post an [Issue](https://github.com
 
 ## Citation
 Please cite this paper if it helps your research:
-
+```bibtex
 @article{10.1093/bioinformatics/btad284,
     author = {Pham, My-Diem Nguyen and Nguyen, Thanh-Nhan and Tran, Le Son and Nguyen, Que-Tran Bui and Nguyen, Thien-Phuc Hoang and Pham, Thi Mong Quynh and Nguyen, Hoai-Nghia and Giang, Hoa and Phan, Minh-Duy and Nguyen, Vy},
     title = "{epiTCR: a highly sensitive predictor for TCR–peptide binding}",
@@ -68,5 +68,6 @@ Please cite this paper if it helps your research:
     url = {https://doi.org/10.1093/bioinformatics/btad284},
     eprint = {https://academic.oup.com/bioinformatics/article-pdf/39/5/btad284/50204900/btad284.pdf},
 }
+```
 
 ## References
