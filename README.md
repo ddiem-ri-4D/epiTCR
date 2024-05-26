@@ -69,5 +69,3 @@ Please cite this paper if it helps your research:
     eprint = {https://academic.oup.com/bioinformatics/article-pdf/39/5/btad284/50204900/btad284.pdf},
 }
 ```
-
-## References
