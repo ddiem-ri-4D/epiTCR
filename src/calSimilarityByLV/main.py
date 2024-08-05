@@ -1,37 +1,40 @@
 import pandas as pd
 from thefuzz import process, fuzz
 import modules.processor as Processor
-import pandas as pd
-from thefuzz import fuzz
-from thefuzz import process
 
+# Read the training and test data
+data_train = pd.read_csv("../../data/nonOverlapingPeptide/withoutMHC/train/train.csv")
+data_test = pd.read_csv("../../data/nonOverlapingPeptide/withoutMHC/test/test.csv")
 
-DATA_TRAIN = pd.read_csv("../../data/nonOverlapingPeptide/withoutMHC/train/train.csv")
-DATA_TEST = pd.read_csv("../../data/nonOverlapingPeptide/withoutMHC/test/test.csv")
+# Combine training and test data
+data_full = pd.concat([data_train, data_test], axis=0)
 
-DATA_FULL = pd.concat([DATA_TRAIN, DATA_TEST], axis = 0)
+# Get unique epitopes
+unique_epitopes = data_full['epitope'].unique().tolist()
+length = len(unique_epitopes)
 
+# Compute similarity scores
+score_sort_epitope = [(epitope,) + match
+                      for epitope in unique_epitopes 
+                      for match in process.extract(epitope, unique_epitopes, scorer=fuzz.token_sort_ratio, limit=4120)]
 
-uni_epitope = DATA_FULL['epitope'].unique().tolist()
-LENGHT = len(uni_epitope)
+# Create a DataFrame with similarity scores
+similarity_sort = pd.DataFrame(score_sort_epitope, columns=['epitope', 'match_sort', 'score_sort'])
+print(similarity_sort.head(10))
 
-score_sort_epitope = [(x,) + i
-                     for x in uni_epitope 
-                     for i in process.extract(x, uni_epitope, scorer=fuzz.token_sort_ratio, limit=4120)]
+# Split the DataFrame by position
+split_dataframes = Processor.splitDataframeByPosition(similarity_sort, length)
 
-similarity_sort = pd.DataFrame(score_sort_epitope, columns=['epitope','match_sort','score_sort'])
-similarity_sort.head(10)
+# Process each split DataFrame
+processed_dfs = []
+for i in range(length):
+    temp_df = split_dataframes[i].reset_index().pivot('epitope', 'match_sort', 'score_sort').reset_index().rename_axis(None, axis=1)
+    processed_dfs.append(temp_df)
 
-sp_dataframe = Processor.splitDataframeByPosition(similarity_sort, LENGHT)
+# Concatenate processed DataFrames and sort by 'epitope'
+result_df = pd.concat(processed_dfs)
+sorted_result_df = result_df.sort_values('epitope').reset_index(drop=True)
+print(sorted_result_df.tail(5))
 
-res = []
-for i in range(LENGHT):
-    temp = sp_dataframe[i].reset_index().pivot('epitope', 'match_sort', 'score_sort').\
-                           reset_index().rename_axis(None, axis=1)
-    res.append(temp)
-pdList = [res[i] for i in range(LENGHT)]  
-new_df = pd.concat(pdList)
-sort_new_df = new_df.sort_values('epitope').reset_index(drop=True)
-print(sort_new_df.tail(5))
-
-sort_new_df.to_csv("../../data/similarityScore/matrixLevenSimiEpi.csv", index=False)
+# Save the resulting DataFrame to a CSV file
+sorted_result_df.to_csv("../../data/similarityScore/matrixLevenSimiEpi.csv", index=False)
